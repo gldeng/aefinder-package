@@ -10,8 +10,9 @@ def run(plan, advertised_ip):
         need_redis=True,
         need_rabbitmq=True,
         need_elasticsearch=True,
-        need_kafka=True
-        )
+        need_kafka=True,
+        need_kibana=True
+    )
     output |= aelf_infra_output
     aelf_node_output = aelf_node_module.run(
         plan,
