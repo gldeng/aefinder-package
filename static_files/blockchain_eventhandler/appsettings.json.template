@@ -1,0 +1,54 @@
+{
+    "ConnectionStrings": {
+      "Default": "{{ .MongoDbUrl }}AeFinder"
+    },
+    "Redis": {
+      "Configuration": "{{ .RedisHostPort }}"
+    },
+    "Orleans": {
+      "ClusterId": "dev",
+      "ServiceId": "OrleansBasics",
+      "MongoDBClient": "{{ .MongoDbUrl }}",
+      "DataBase": "AeFinderOrleansDB",
+      "GrainResponseTimeOut": 30,
+      "GrainMaxMessageBodySize": 209715200
+    },
+    "RabbitMQ": {
+      "Connections": {
+        "Default": {
+          "HostName": "{{ .RabbitMqHost }}",
+          "Port": "{{ .RabbitMqPort }}",
+          "UserName": "admin",
+          "Password": "admin"
+        }
+      },
+      "EventBus": {
+        "ClientName": "AeFinder-ChainHandler-AELF",
+        "ExchangeName": "AeFinderExchange",
+        "PrefetchCount": 100
+      }
+    },
+    "BlockChainEventHandler": {
+      "BlockPartionLimit": 1000
+    },
+    "Serilog": {
+      "MinimumLevel": {
+        "Default": "Information",
+        "Override": {
+          "Default": "Warning",
+          "System": "Warning",
+          "Microsoft": "Warning"
+        }
+      },
+      "WriteTo": [
+        {
+          "Name": "Console"
+        }
+      ]
+    },
+    "OpenTelemetry": {
+      "ServiceName": "AeFinder.BlockChainEventHandler",
+      "ServiceVersion": "1.0.0",
+      "CollectorEndpoint": "http://localhost:4315"
+    }
+  }

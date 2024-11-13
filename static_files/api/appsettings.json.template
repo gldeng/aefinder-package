@@ -1,0 +1,228 @@
+{
+  "App": {
+    "CorsOrigins": "https://*.AeFinder.com,http://localhost:4200"
+  },
+  "Kestrel": {
+    "EndPoints": {
+      "Http": {
+        "Url": "http://*:{{ .Port }}"
+      }
+    }
+  },
+  "Kubernetes": {
+    "AppNameSpace": "aefinder-app",
+    "AppPodReplicas": 2,
+    "HostName": "k8s.cluster.com",
+    "OriginName": "https://k8s.cluster.com:32439",
+    "AppFullPodRequestCpuCore": "1",
+    "AppFullPodRequestMemory": "2Gi",
+    "AppQueryPodRequestCpuCore": "1",
+    "AppQueryPodRequestMemory": "2Gi"
+  },
+  "OperationLimit": {
+    "MaxEntityCallCount": 100,
+    "MaxEntitySize": 100000,
+    "MaxLogCallCount": 100,
+    "MaxLogSize": 100000,
+    "MaxContractCallCount": 100
+  },
+  "AppDeploy": {
+    "AppImageName": "",
+    "MaxAppCodeSize": 12582912,
+    "MaxAppAttachmentSize": 125829120
+  },
+  "ConnectionStrings": {
+    "Default": "{{ .MongoDbUrl }}AeFinder"
+  },
+  "Redis": {
+    "Configuration": "{{ .RedisHostPort }}"
+  },
+  "AuthServer": {
+    "Authority": "{{ .AuthServerUrl }}",
+    "RequireHttpsMetadata": "false",
+    "SwaggerClientId": "AeFinder_Swagger",
+    "SwaggerClientSecret": "1q2w3e*"
+  },
+  "StringEncryption": {
+    "DefaultPassPhrase": "ZIenfPzEyOaO85Sk"
+  },
+  "Elasticsearch": {
+    "Uris": [
+      "{{ .ElasticsearchUrl }}"
+    ],
+    "NumberOfShards": 5,
+    "NumberOfReplicas": 1
+  },
+  "LogElasticSearch": {
+    "Uris": [
+      "{{ .ElasticsearchUrl }}"
+    ],
+    "Username": "",
+    "Password": "",
+    "ILMPolicy": {
+      "HotMaxAge": "1d",
+      "HotMaxSize": "50G",
+      "ColdMinAge": "1d",
+      "DeleteMinAge": "7d"
+    }
+  },
+  "Orleans": {
+    "ClusterId": "dev",
+    "ServiceId": "OrleansBasics",
+    "MongoDBClient": "{{ .MongoDbUrl }}",
+    "DataBase": "AeFinderOrleansDB"
+  },
+  "Api": {
+    "BlockQueryHeightInterval": 1000,
+    "TransactionQueryHeightInterval": 100,
+    "LogEventQueryHeightInterval": 100
+  },
+  "IpRateLimiting": {
+    "EnableEndpointRateLimiting": true,
+    "StackBlockedRequests": false,
+    "RealIPHeader": "X-Real-IP",
+    "ClientIdHeader": "X-ClientId",
+    "HttpStatusCode": 429,
+    "GeneralRules": [
+      {
+        "Endpoint": "*",
+        "Period": "1m",
+        "Limit": 100
+      }
+    ],
+    "EndpointWhitelist": [
+      "post:/api/app/graphql/*"
+    ]
+  },
+  "IpRateLimitPolicies": {},
+  "PlugIns": {
+    "Path": ""
+  },
+  "ScheduledTask": {
+    "AppInfoSyncTaskPeriodMilliSeconds": 86400000
+  },
+  "AmazonS3": {
+    "AccessKeyID": "",
+    "SecretKey": "",
+    "ServiceURL": "",
+    "BucketName": ""
+  },
+  "RabbitMQ": {
+    "Connections": {
+      "Default": {
+        "HostName": "{{ .RabbitMqHost }}",
+        "Port": "{{ .RabbitMqPort }}",
+        "UserName": "admin",
+        "Password": "admin"
+      }
+    },
+    "EventBus": {
+      "ClientName": "AeFinder-HttpApi",
+      "ExchangeName": "AeFinder-BackGround",
+      "PrefetchCount": 100
+    }
+  },
+  "AElfEntityMapping": {
+    "CollectionPrefix": "AeFinder",
+    "ShardInitSettings": [
+      {
+        "CollectionName": "BlockIndex",
+        "ShardGroups": [
+          {
+            "ShardKeys": [
+              {
+                "Name": "ChainId",
+                "Value": "AELF",
+                "Step": "",
+                "StepType": "None"
+              },
+              {
+                "Name": "BlockHeight",
+                "Value": "0",
+                "Step": "120000",
+                "StepType": "Floor"
+              }
+            ]
+          },
+          {
+            "ShardKeys": [
+              {
+                "Name": "ChainId",
+                "Value": "tDVW",
+                "Step": "",
+                "StepType": "None"
+              },
+              {
+                "Name": "BlockHeight",
+                "Value": "0",
+                "Step": "100000",
+                "StepType": "Floor"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "CollectionName": "TransactionIndex",
+        "ShardGroups": [
+          {
+            "ShardKeys": [
+              {
+                "Name": "ChainId",
+                "Value": "AELF",
+                "Step": "",
+                "StepType": "None"
+              },
+              {
+                "Name": "BlockHeight",
+                "Value": "0",
+                "Step": "50000",
+                "StepType": "Floor"
+              }
+            ]
+          },
+          {
+            "ShardKeys": [
+              {
+                "Name": "ChainId",
+                "Value": "tDVW",
+                "Step": "",
+                "StepType": "None"
+              },
+              {
+                "Name": "BlockHeight",
+                "Value": "0",
+                "Step": "70000",
+                "StepType": "Floor"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "Serilog": {
+    "MinimumLevel": {
+      "Default": "Debug",
+      "Override": {
+        "Default": "Warning",
+        "System": "Warning",
+        "Microsoft": "Warning"
+      }
+    },
+    "WriteTo": [
+      {
+        "Name": "Console"
+      }
+    ]
+  },
+  "OpenTelemetry": {
+    "ServiceName": "AeFinder.HttpApi.Host",
+    "ServiceVersion": "1.0.0",
+    "CollectorEndpoint": "http://localhost:4315"
+  },
+  "ThreadPool": {
+    "MinWorkerThreads": 8,
+    "MinCompletionPortThreads": 8
+  }
+}

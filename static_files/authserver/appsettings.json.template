@@ -1,0 +1,42 @@
+{
+  "App": {
+    "SelfUrl": "https://localhost:44328",
+    "ClientUrl": "http://localhost:4200",
+    "CorsOrigins": "https://*.AeFinder.com,http://localhost:4200,https://localhost:44311,https://localhost:44337",
+    "RedirectAllowedUrls": "http://localhost:4200,https://localhost:44388,https://localhost:44311,https://localhost:44352"
+  },
+  "Kestrel": {
+    "EndPoints": {
+      "Http": {
+        "Url": "http://*:{{ .Port }}"
+      }
+    }
+  },
+  "AuthServer": {
+    "IssuerUri": "http://{{ .Host }}:{{ .Port }}"
+  },
+  "ConnectionStrings": {
+    "Default": "{{ .MongoDbUrl }}AeFinder"
+  },
+  "Redis": {
+    "Configuration": "{{ .RedisHostPort }}"
+  },
+  "StringEncryption": {
+    "DefaultPassPhrase": "ZIenfPzEyOaO85Sk"
+  },
+  "Serilog": {
+    "MinimumLevel": {
+      "Default": "Debug",
+      "Override": {
+        "Default": "Warning",
+        "System": "Warning",
+        "Microsoft": "Warning"
+      }
+    },
+    "WriteTo": [
+      {
+        "Name": "Console"
+      }
+    ]
+  }
+}

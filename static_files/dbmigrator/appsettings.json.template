@@ -1,0 +1,36 @@
+{
+    "ConnectionStrings": {
+      "Default": "{{ .MongoDbUrl }}AeFinder"
+    },
+    "App": {
+      "AdminPassword": "1q2W3e*"
+    },
+    "OpenIddict": {
+      "Applications": {
+        "AeFinder_Web": {
+          "ClientId": "AeFinder_Web",
+          "ClientSecret": "1q2w3e*",
+          "RootUrl": "https://10.0.0.3:44384"
+        },
+        "AeFinder_App": {
+          "ClientId": "AeFinder_App",
+          "RootUrl": "http://10.0.0.3:4200"
+        },
+        "AeFinder_BlazorServerTiered": {
+          "ClientId": "AeFinder_BlazorServerTiered",
+          "ClientSecret": "1q2w3e*",
+          "RootUrl": "https://10.0.0.3:44346"
+        },
+        "AeFinder_Swagger": {
+          "ClientId": "AeFinder_Swagger",
+          "RootUrl": "https://10.0.0.3:44391"
+        },
+        "AeFinder_DApps": [
+          {
+            "ClientId": "AeFinder_DApp",
+            "ClientSecret": "1q2w3e*"
+          }
+        ]
+      }
+    }
+}

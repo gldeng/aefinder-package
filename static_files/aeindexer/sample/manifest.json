@@ -1,0 +1,32 @@
+{
+    "subscriptionItems": [
+        {
+            "chainId": "AELF",
+            "startBlockNumber": 2,
+            "onlyConfirmed": false,
+            "transactions": [],
+            "logEvents": [
+                {
+                    "contractAddress": "j5c9dv4ird82fbcBiaHvBys4m3qZFaYnxPKUgDpkhc7nsbvaa",
+                    "eventNames": ["GovernanceSchemeAdded", "GovernanceSchemeThresholdUpdated", "GovernanceSchemeThresholdRemoved", "GovernanceTokenSet", "ProposalCreated", "ProposalVetoed", "ProposalExecuted", "DaoProposalTimePeriodSet"]
+                },
+                {
+                    "contractAddress": "defdwNRez3U8WpdVE73p6xuiixeYYJ9hn9ZS5GMSpTHbJ2omt",
+                    "eventNames": ["DAOCreated", "SubsistStatusSet", "HighCouncilEnabled", "HighCouncilDisabled", "FileInfosUploaded", "FileInfosRemoved", "MetadataUpdated", "MemberAdded", "MemberRemoved"]
+                },
+                {
+                    "contractAddress": "ugE15RDZs36kutC5yLdR2iGC2D7o5WFW98vDvJ76FJcYDKCbz",
+                    "eventNames": ["HighCouncilConfigSet", "ElectionVotingEventRegistered", "CandidateAdded", "CandidateRemoved", "Voted", "CandidateElected", "HighCouncilAdded", "HighCouncilRemoved"]
+                },
+                {
+                    "contractAddress": "7VdDpXgZd7PDQf4vRSZMy6nLukAviDAyHDs87o7ZUM9FbQQsA",
+                    "eventNames": ["TreasuryCreated", "TreasuryTransferred"]
+                },
+                {
+                    "contractAddress": "NCi6nskU1A3QTNxcxgo1rnrrtkhVh56jXqj4m2T6uXs5hjsSF",
+                    "eventNames": ["VoteSchemeCreated", "VotingItemRegistered", "Voted", "Withdrawn", "EmergencyStatusSet", "Staked", "UnStakeRequested", "StakeableTokenSet", "VotingPowerWeightSet", "MaxVotingPowersSet", "Committed"]
+                }
+            ]
+        }
+    ]
+}

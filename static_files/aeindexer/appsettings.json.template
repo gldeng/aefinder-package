@@ -1,0 +1,89 @@
+{
+  "App": {
+    "CorsOrigins": "https://*.AeFinder.com,http://localhost:4200,http://127.0.0.1:8081"
+  },
+  "ConnectionStrings": {
+    "Default": "{{ .MongoDbUrl }}"
+  },
+  "Kestrel": {
+    "EndPoints": {
+      "Http": {
+        "Url": "http://*:{{ .Port }}"
+      }
+    }
+  },
+  "ChainNode": {
+    "ChainNodes": {
+      "AELF": "{{ .AelfNodeUrl }}"
+    }
+  },
+  "Elasticsearch": {
+    "Uris": [
+      "{{ .ElasticsearchUrl }}"
+    ],
+    "NumberOfShards": 5,
+    "NumberOfReplicas": 1
+  },
+  "AElfEntityMapping": {
+    "CollectionPrefix": "AeFinder"
+  },
+  "Kafka": {
+    "Brokers": [
+      "{{ .KafkaHostPort }}"
+    ],
+    "Partitions": 1,
+    "ReplicationFactor": 1
+  },
+  "Orleans": {
+    "ClusterId": "dev",
+    "ServiceId": "OrleansBasics",
+    "MongoDBClient": "{{ .MongoDbUrl }}",
+    "DataBase": "AeFinderOrleansDB"
+  },
+  "ApiHostUrl": "{{ .ApiUrl }}",
+  "AppInfo": {
+    "AppId": "{{ .AppId }}",
+    "Version": "{{ .AppVersion }}"
+  },
+  "AmazonS3": {
+    "AccessKeyID": "",
+    "SecretKey": "",
+    "ServiceURL": "",
+    "BucketName": ""
+  },
+  "RabbitMQ": {
+    "Connections": {
+      "Default": {
+        "HostName": "{{ .RabbitMqHost }}",
+        "Port": "{{ .RabbitMqPort }}",
+        "UserName": "admin",
+        "Password": "admin"
+      }
+    },
+    "EventBus": {
+      "ClientName": "AeFinder_App-test-3b5377ac7bae4996a97e1d72e6998196",
+      "ExchangeName": "AeFinder_App-3b5377ac7bae4996a97e1d72e6998196",
+      "PrefetchCount": 20
+    }
+  },
+  "Serilog": {
+    "MinimumLevel": {
+      "Default": "Debug",
+      "Override": {
+        "Default": "Warning",
+        "System": "Warning",
+        "Microsoft": "Warning"
+      }
+    },
+    "WriteTo": [
+      {
+        "Name": "Console"
+      }
+    ]
+  },
+  "OpenTelemetry": {
+    "ServiceName": "AeFinder.App.Host",
+    "ServiceVersion": "1.0.0",
+    "CollectorEndpoint": "http://localhost:4315"
+  }
+}

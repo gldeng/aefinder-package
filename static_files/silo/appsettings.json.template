@@ -1,0 +1,181 @@
+{
+    "Orleans": {
+      "ClusterId": "dev",
+      "ServiceId": "OrleansBasics",
+      "IsRunningInKubernetes": false,
+      "AdvertisedIP": "{{ .AdvertisedIP}}",
+      "GatewayPort": {{ .GatewayPort }},
+      "SiloPort": {{ .SiloPort }},
+      "MongoDBClient": "{{ .MongoDbUrl }}",
+      "DataBase": "AeFinderOrleansDB",
+      "DashboardUserName": "syb",
+      "DashboardPassword": "123456",
+      "DashboardCounterUpdateIntervalMs": 1000,
+      "DashboardPort": 8088,
+      "ClassSpecificCollectionAge": {
+        "AeFinder.Grains.Grain.Blocks.BlockGrain": 61
+      },
+      "GrainResponseTimeOut": 30,
+      "GrainMaxMessageBodySize": 209715200,
+      "MaxForwardCount": 10
+    },
+    "StringEncryption": {
+      "DefaultPassPhrase": "ZIenfPzEyOaO85Sk"
+    },
+    "ConnectionStrings": {
+      "Default": "{{ .MongoDbUrl }}AeFinder"
+    },
+    "Redis": {
+      "Configuration": "{{ .RedisHostPort }}"
+    },
+    "Elasticsearch": {
+      "Uris": [
+        "{{ .ElasticsearchUrl }}"
+      ],
+      "NumberOfShards": 5,
+      "NumberOfReplicas": 1
+    },
+    "GrainPrimaryKey": {
+      "BlockGrainSwitchInterval": 10000000
+    },
+    "Api": {
+      "BlockQueryHeightInterval": 1000,
+      "TransactionQueryHeightInterval": 100,
+      "LogEventQueryHeightInterval": 100
+    },
+    "Kafka": {
+      "Brokers": [
+        "{{ .KafkaHostPort }}"
+      ],
+      "Partitions": 1,
+      "ReplicationFactor": 1,
+      "MessageMaxBytes": 104857600
+    },
+    "BlockPush": {
+      "HistoricalPushRecoveryThreshold": 1,
+      "MaxHistoricalBlockPushThreshold": 100000,
+      "MessageStreamNamespaces": [
+        "topic1",
+        "topic2",
+        "topic3",
+        "topic4",
+        "topic5"
+      ]
+    },
+    "RabbitMQ": {
+      "Connections": {
+        "Default": {
+          "HostName": "{{ .RabbitMqHost }}",
+          "Port": "{{ .RabbitMqPort }}",
+          "UserName": "admin",
+          "Password": "admin"
+        }
+      },
+      "EventBus": {
+        "ClientName": "AeFinder-Silo",
+        "ExchangeName": "AeFinder-BackGround",
+        "PrefetchCount": 20
+      }
+    },
+    "AElfEntityMapping": {
+      "CollectionPrefix": "AeFinder",
+      "ShardInitSettings": [
+        {
+          "CollectionName": "BlockIndex",
+          "ShardGroups": [
+            {
+              "ShardKeys": [
+                {
+                  "Name": "ChainId",
+                  "Value": "AELF",
+                  "Step": "",
+                  "StepType": "None"
+                },
+                {
+                  "Name": "BlockHeight",
+                  "Value": "0",
+                  "Step": "120000",
+                  "StepType": "Floor"
+                }
+              ]
+            },
+            {
+              "ShardKeys": [
+                {
+                  "Name": "ChainId",
+                  "Value": "tDVV",
+                  "Step": "",
+                  "StepType": "None"
+                },
+                {
+                  "Name": "BlockHeight",
+                  "Value": "0",
+                  "Step": "100000",
+                  "StepType": "Floor"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "CollectionName": "TransactionIndex",
+          "ShardGroups": [
+            {
+              "ShardKeys": [
+                {
+                  "Name": "ChainId",
+                  "Value": "AELF",
+                  "Step": "",
+                  "StepType": "None"
+                },
+                {
+                  "Name": "BlockHeight",
+                  "Value": "0",
+                  "Step": "50000",
+                  "StepType": "Floor"
+                }
+              ]
+            },
+            {
+              "ShardKeys": [
+                {
+                  "Name": "ChainId",
+                  "Value": "tDVV",
+                  "Step": "",
+                  "StepType": "None"
+                },
+                {
+                  "Name": "BlockHeight",
+                  "Value": "0",
+                  "Step": "70000",
+                  "StepType": "Floor"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "Serilog": {
+      "MinimumLevel": {
+        "Default": "Debug",
+        "Override": {
+          "Default": "Warning",
+          "System": "Warning",
+          "Microsoft": "Warning"
+        }
+      },
+      "WriteTo": [
+        {
+          "Name": "Console",
+          "Args": {
+          }
+        }
+      ]
+    },
+    "OpenTelemetry": {
+      "ServiceName": "AeFinder.Silo",
+      "ServiceVersion": "1.0.0",
+      "CollectorEndpoint": "http://localhost:4315"
+    }
+  }
